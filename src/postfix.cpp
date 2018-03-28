@@ -13,48 +13,65 @@ int main()
     getline(cin,line);
 
     int i = 0;
-    while(line[i])
+    char answer = 'y';
+    while(answer == 'y')
     {
-        if(isalpha(line[i]))
+        while(line[i])
         {
-            cout << "Enter " << line[i] << ": ";
-            int temp;
-            cin >> temp;
-            st.push(temp);
+            if(isalpha(line[i]))
+            {
+                cout << "Enter " << line[i] << ": ";
+                int temp;
+                cin >> temp;
+                st.push(temp);
+            }
+            else if(line[i])
+            {
+                int left, right = 0;
+                switch(line[i])
+                {
+                    case '+':
+                        right = st.top();
+                        st.pop();
+                        left = st.top();
+                        st.pop();
+                        st.push(left+right);
+                        break;
+                    case '-':
+                        right = st.top();
+                        st.pop();
+                        left = st.top();
+                        st.pop();
+                        st.push(left-right);   
+                        break;
+                    case '*':
+                        right = st.top();
+                        st.pop();
+                        left = st.top();
+                        st.pop();
+                        st.push(left*right);   
+                        break;
+                    case '/':
+                        right = st.top();
+                        st.pop();
+                        left = st.top();
+                        st.pop();
+                        st.push(left/right);   
+                        break;
+                    default:
+                        break;
+                }
+            }
+            i++;
         }
-        else if(line[i])
+        cout << st.top() << endl;
+        cout << "Continue (Y/N)?: " << endl;
+        cin >> answer;
+        if(tolower(answer) == 'y')
         {
-            int left, right = 0;
-            if(line[i] == '*')
-            {
-                right = st.top();
-                st.pop();
-                left = st.top();
-                st.pop();
-                st.push(left*right);
-                //cout << left * right << " ";
-            }
-            else if(line[i] == '+')
-            {
-                right = st.top();
-                st.pop();
-                left = st.top();
-                st.pop();
-                st.push(left+right);
-                //cout << left + right << " ";
-            }
-            else if(line[i] == '-')
-            {
-                right = st.top();
-                st.pop();
-                left = st.top();
-                st.pop();
-                st.push(left-right);
-            }
+            cout << "Enter postfix: ";
+            getline(cin,line);
         }
-        i++;
     }
-    cout << st.top() << endl;
-    
     return 0;
 }
