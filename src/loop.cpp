@@ -3,7 +3,6 @@
 #include <stack>
 using namespace std;
 
-//loop test cause my code is garbage.
 int main()
 {
     char answer = 'y';
@@ -80,6 +79,5 @@ int main()
             break;
         }
     }
-
     return 0;
 }
