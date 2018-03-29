@@ -1,3 +1,9 @@
+/*
+    Liam Fitzpatrick
+    CPSC 323
+    Programming Assignment #2
+*/
+
 #include <iostream>
 #include <string>
 #include <stack>
